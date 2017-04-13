@@ -30,7 +30,6 @@ public class GameController {
 		if (tmp < count) {
 			count = tmp;
 		}
-		
 
 		int x = 0;
 		int y = 0;
@@ -47,7 +46,6 @@ public class GameController {
 				tmp++;
 				checkForCleanUpBalls(num);
 			}
-			
 			
 		}
 
@@ -69,6 +67,8 @@ public class GameController {
 		listBallsForCleanUp.add(cellNumber);
 		listBallsForCleanUp.addAll(ctler.cleanUpDirectionUpLeftDownRight(cellNumber, color));
 		listBallsForCleanUp.addAll(ctler.cleanUpDirectionUpRightDownLeft(cellNumber, color));
+		listBallsForCleanUp.addAll(ctler.cleanUpDirectionUpDown(cellNumber, color));
+		listBallsForCleanUp.addAll(ctler.cleanUpDirectionLeftRight(cellNumber, color));
 
 		if (listBallsForCleanUp.size() > 4){
 			ScorePanel.increaseCountByNum(listBallsForCleanUp.size());

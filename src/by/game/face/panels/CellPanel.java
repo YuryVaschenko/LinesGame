@@ -16,7 +16,6 @@ public class CellPanel extends JPanel {
 	private int status = 0;
 	private int cellNum = 0;
 	private BallColor cellBallColor;
-	
 
 	public CellPanel() {
 		drawImage(BallColor.EMPTY);
@@ -53,11 +52,11 @@ public class CellPanel extends JPanel {
 	public void setCellNum(int num) {
 		this.cellNum = num;
 	}
-	
+
 	public BallColor getCellBallColor() {
 		return cellBallColor;
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

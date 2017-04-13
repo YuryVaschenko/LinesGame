@@ -24,7 +24,7 @@ public class Controller {
 
 		List<Integer> listOfBalls = new ArrayList<>();
 		Point point = Point.getPointCoordsByNum(cellNumber);
-		
+
 		while (point.getX() - 1 > 0 && point.getY() - 1 > 0) {
 			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() - 1, point.getY() - 1))
 					.getCellBallColor().name() == color.name()) {
@@ -48,20 +48,20 @@ public class Controller {
 				break;
 			}
 		}
-		
-		if(listOfBalls.size() < 4){
+
+		if (listOfBalls.size() < 4) {
 			listOfBalls.clear();
-		} 
-		
+		}
+
 		return listOfBalls;
-		
+
 	}
-	
+
 	public List<Integer> cleanUpDirectionUpRightDownLeft(int cellNumber, BallColor color) {
 
 		List<Integer> listOfBalls = new ArrayList<>();
 		Point point = Point.getPointCoordsByNum(cellNumber);
-		
+
 		while (point.getX() + 1 < 10 && point.getY() - 1 > 0) {
 			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() + 1, point.getY() - 1))
 					.getCellBallColor().name() == color.name()) {
@@ -85,12 +85,81 @@ public class Controller {
 				break;
 			}
 		}
-;
-		if(listOfBalls.size() < 4){
+		;
+		if (listOfBalls.size() < 4) {
 			listOfBalls.clear();
-		} 
-		
+		}
+
 		return listOfBalls;
 	}
 
+	public List<Integer> cleanUpDirectionUpDown(int cellNumber, BallColor color) {
+
+		List<Integer> listOfBalls = new ArrayList<>();
+		Point point = Point.getPointCoordsByNum(cellNumber);
+
+		while (point.getY() - 1 > 0) {
+			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX(), point.getY() - 1)).getCellBallColor()
+					.name() == color.name()) {
+				listOfBalls.add(Point.getCellNumber(point.getX(), point.getY() - 1));
+				point.setY(point.getY() - 1);
+			} else {
+				break;
+			}
+		}
+
+		point = Point.getPointCoordsByNum(cellNumber);
+
+		while (point.getY() + 1 < 10) {
+			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX(), point.getY() + 1)).getCellBallColor()
+					.name() == color.name()) {
+				listOfBalls.add(Point.getCellNumber(point.getX(), point.getY() + 1));
+				point.setY(point.getY() + 1);
+			} else {
+				break;
+			}
+		}
+
+		if (listOfBalls.size() < 4) {
+			listOfBalls.clear();
+		}
+
+		return listOfBalls;
+
+	}
+
+	public List<Integer> cleanUpDirectionLeftRight(int cellNumber, BallColor color) {
+
+		List<Integer> listOfBalls = new ArrayList<>();
+		Point point = Point.getPointCoordsByNum(cellNumber);
+
+		while (point.getX() - 1 > 0) {
+			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() - 1, point.getY())).getCellBallColor()
+					.name() == color.name()) {
+				listOfBalls.add(Point.getCellNumber(point.getX() - 1, point.getY()));
+				point.setX(point.getX() - 1);
+			} else {
+				break;
+			}
+		}
+
+		point = Point.getPointCoordsByNum(cellNumber);
+
+		while (point.getX() + 1 < 10) {
+			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() + 1, point.getY())).getCellBallColor()
+					.name() == color.name()) {
+				listOfBalls.add(Point.getCellNumber(point.getX() + 1, point.getY()));
+				point.setX(point.getX() + 1);
+			} else {
+				break;
+			}
+		}
+
+		if (listOfBalls.size() < 4) {
+			listOfBalls.clear();
+		}
+
+		return listOfBalls;
+
+	}
 }

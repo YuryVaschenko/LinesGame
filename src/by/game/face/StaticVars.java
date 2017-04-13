@@ -33,7 +33,6 @@ public final class StaticVars {
 	public static ArrayList<Image> listOfImages = new ArrayList<>();
 	public static ArrayList<Integer> path = new ArrayList<>();
 	public static BallColor tmpColor;
-	
 
 	static {
 
