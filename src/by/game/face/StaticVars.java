@@ -27,7 +27,7 @@ public final class StaticVars {
 	public static int GRID_ROWS_COUNT = 9;
 	public static int GRID_COLS_COUNT = 9;
 	public static int NUMBER_OF_COLORS = 7; // 1 to 7
-	public static int[][] field = new int[9][9];
+	public static int[][] fieldArrayToPathHandling = new int[GRID_ROWS_COUNT + 2][GRID_COLS_COUNT + 2];
 	public static ArrayList<CellPanel> listOfCellPanels = new ArrayList<>();
 	public static ArrayList<CellPanel> listOfNewBallsPanels = new ArrayList<>();
 	public static ArrayList<Image> listOfImages = new ArrayList<>();

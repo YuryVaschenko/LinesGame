@@ -10,6 +10,7 @@ import by.game.face.BallColor;
 import by.game.face.PanelsCoords;
 import by.game.face.StaticVars;
 import by.game.logic.GameController;
+import by.game.logic.PathHandler;
 
 public class GamePanel extends JPanel {
 
@@ -48,19 +49,22 @@ public class GamePanel extends JPanel {
 					public void mousePressed(MouseEvent e) {
 
 						GameController gmctr = new GameController();
+						PathHandler pathHandler = new PathHandler();
 						
 						if (StaticVars.path.isEmpty() && cp.getStatus() != 0) {
 							StaticVars.path.add(cp.getCellNum());
+							pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
 							StaticVars.tmpColor = cp.getCellBallColor();
 							cp.drawImage(BallColor.ANGRY);
+						} else {
+							if (!StaticVars.path.isEmpty() && cp.getStatus() != 0) {
+								StaticVars.listOfCellPanels.get(StaticVars.path.get(0)).drawImage(StaticVars.tmpColor);
+								StaticVars.path.set(0, cp.getCellNum());
+								pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
+								StaticVars.tmpColor = cp.getCellBallColor();
+								cp.drawImage(BallColor.ANGRY);
+							}
 						}
-						if (!StaticVars.path.isEmpty() && cp.getStatus() != 0) {
-							StaticVars.listOfCellPanels.get(StaticVars.path.get(0)).drawImage(StaticVars.tmpColor);
-							StaticVars.path.set(0, cp.getCellNum());
-							StaticVars.tmpColor = cp.getCellBallColor();
-							cp.drawImage(BallColor.ANGRY);
-						}
-
 						if (!StaticVars.path.isEmpty() && cp.getStatus() == 0) {
 							cp.drawImage(StaticVars.tmpColor);
 							StaticVars.listOfCellPanels.get(StaticVars.path.get(0)).drawImage(BallColor.EMPTY);
