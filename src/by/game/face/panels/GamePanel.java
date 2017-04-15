@@ -2,6 +2,7 @@ package by.game.face.panels;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -50,6 +51,7 @@ public class GamePanel extends JPanel {
 
 						GameController gmctr = new GameController();
 						PathHandler pathHandler = new PathHandler();
+						List<Integer> ballPath;
 						
 						if (StaticVars.path.isEmpty() && cp.getStatus() != 0) {
 							StaticVars.path.add(cp.getCellNum());
@@ -63,16 +65,36 @@ public class GamePanel extends JPanel {
 								pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
 								StaticVars.tmpColor = cp.getCellBallColor();
 								cp.drawImage(BallColor.ANGRY);
+							} else {
+								if (!StaticVars.path.isEmpty() && cp.getStatus() == 0 && pathHandler.isPathExists(cp.getCellNum())) {
+								
+									ballPath = pathHandler.findingShortesrWay(cp.getCellNum());
+									new Thread(new Runnable() {
+										
+										@Override
+										public void run() {
+											for(int i = ballPath.size() - 1; i > 0; i--){
+												StaticVars.listOfCellPanels.get(ballPath.get(i)).drawImage(StaticVars.tmpColor);
+												try {
+													Thread.sleep(40);
+												} catch (InterruptedException e1) {
+													e1.printStackTrace();
+												}
+												StaticVars.listOfCellPanels.get(ballPath.get(i)).drawImage(BallColor.EMPTY);
+											}
+											cp.drawImage(StaticVars.tmpColor);
+											if(!gmctr.checkForCleanUpBalls(cp.getCellNum())){
+												gmctr.addBallsByCount(3);
+											}
+											
+											StaticVars.path.clear();
+										}
+									}).start();
+									
+								}
 							}
 						}
-						if (!StaticVars.path.isEmpty() && cp.getStatus() == 0) {
-							cp.drawImage(StaticVars.tmpColor);
-							StaticVars.listOfCellPanels.get(StaticVars.path.get(0)).drawImage(BallColor.EMPTY);
-							StaticVars.path.clear();
-							if(!gmctr.checkForCleanUpBalls(cp.getCellNum())){
-								gmctr.addBallsByCount(3);
-							}
-						}
+						
 
 					}
 
