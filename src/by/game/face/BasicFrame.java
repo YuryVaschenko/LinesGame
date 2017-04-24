@@ -10,9 +10,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
 
+import by.game.backend.GameController;
 import by.game.face.panels.MainPanel;
 import by.game.face.panels.ScorePanel;
-import by.game.logic.GameController;
 
 public class BasicFrame extends JFrame {
 

@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import by.game.backend.GameController;
 import by.game.face.PanelsCoords;
-import by.game.logic.GameController;
 
 public class MainPanel extends JPanel {
 

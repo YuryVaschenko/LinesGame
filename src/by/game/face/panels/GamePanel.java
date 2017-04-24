@@ -2,20 +2,23 @@ package by.game.face.panels;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import by.game.backend.GameController;
+import by.game.backend.PathHandler;
 import by.game.face.BallColor;
 import by.game.face.PanelsCoords;
 import by.game.face.StaticVars;
-import by.game.logic.GameController;
-import by.game.logic.PathHandler;
 
 public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private MouseListener listener;
+	Thread movingBallThread;
 
 	public GamePanel() {
 
@@ -26,7 +29,76 @@ public class GamePanel extends JPanel {
 		setBorder(BorderFactory.createSoftBevelBorder(0));
 		setVisible(true);
 
+		addCellsListener();
 		fillPanel();
+
+	}
+
+	private void addCellsListener() {
+
+		listener = new MouseAdapter() {
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+				GameController gmctr = new GameController();
+				PathHandler pathHandler = new PathHandler();
+				CellPanel cp = (CellPanel) e.getComponent();
+				List<Integer> ballPath;
+
+				if (StaticVars.path.isEmpty() && cp.getStatus() != 0) {
+					StaticVars.path.add(cp.getCellNum());
+					pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
+					StaticVars.tmpColor = cp.getCellBallColor();
+					cp.drawImage(BallColor.ANGRY);
+				} else {
+					if (!StaticVars.path.isEmpty() && cp.getStatus() != 0) {
+						StaticVars.listOfCellPanels.get(StaticVars.path.get(0)).drawImage(StaticVars.tmpColor);
+						StaticVars.path.set(0, cp.getCellNum());
+						pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
+						StaticVars.tmpColor = cp.getCellBallColor();
+						cp.drawImage(BallColor.ANGRY);
+					} else {
+						if (!StaticVars.path.isEmpty() && cp.getStatus() == 0
+								&& pathHandler.isPathExists(cp.getCellNum())) {
+
+							ballPath = pathHandler.findingShortesrWay(cp.getCellNum());
+							movingBallThread = new Thread(new Runnable() {
+
+								@Override
+								public void run() {
+
+									for (int i = ballPath.size() - 1; i > 0; i--) {
+										StaticVars.listOfCellPanels.get(ballPath.get(i)).drawImage(StaticVars.tmpColor);
+										try {
+											Thread.sleep(35);
+										} catch (InterruptedException e) {
+											e.printStackTrace();
+										}
+										StaticVars.listOfCellPanels.get(ballPath.get(i)).drawImage(BallColor.EMPTY);
+									}
+									cp.drawImage(StaticVars.tmpColor);
+									try {
+										Thread.sleep(100);
+									} catch (InterruptedException e) {
+										e.printStackTrace();
+									}
+									if (!gmctr.checkForCleanUpBalls(cp.getCellNum())) {
+										gmctr.addBallsByCount(3);
+									}
+
+								}
+							});
+							movingBallThread.start();
+							StaticVars.path.clear();
+
+						}
+					}
+				}
+
+			}
+
+		};
 
 	}
 
@@ -43,62 +115,7 @@ public class GamePanel extends JPanel {
 				StaticVars.listOfCellPanels.add(cp);
 				add(cp);
 				num++;
-
-				cp.addMouseListener(new MouseAdapter() {
-
-					@Override
-					public void mousePressed(MouseEvent e) {
-
-						GameController gmctr = new GameController();
-						PathHandler pathHandler = new PathHandler();
-						List<Integer> ballPath;
-						
-						if (StaticVars.path.isEmpty() && cp.getStatus() != 0) {
-							StaticVars.path.add(cp.getCellNum());
-							pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
-							StaticVars.tmpColor = cp.getCellBallColor();
-							cp.drawImage(BallColor.ANGRY);
-						} else {
-							if (!StaticVars.path.isEmpty() && cp.getStatus() != 0) {
-								StaticVars.listOfCellPanels.get(StaticVars.path.get(0)).drawImage(StaticVars.tmpColor);
-								StaticVars.path.set(0, cp.getCellNum());
-								pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
-								StaticVars.tmpColor = cp.getCellBallColor();
-								cp.drawImage(BallColor.ANGRY);
-							} else {
-								if (!StaticVars.path.isEmpty() && cp.getStatus() == 0 && pathHandler.isPathExists(cp.getCellNum())) {
-								
-									ballPath = pathHandler.findingShortesrWay(cp.getCellNum());
-									new Thread(new Runnable() {
-										
-										@Override
-										public void run() {
-											for(int i = ballPath.size() - 1; i > 0; i--){
-												StaticVars.listOfCellPanels.get(ballPath.get(i)).drawImage(StaticVars.tmpColor);
-												try {
-													Thread.sleep(40);
-												} catch (InterruptedException e1) {
-													e1.printStackTrace();
-												}
-												StaticVars.listOfCellPanels.get(ballPath.get(i)).drawImage(BallColor.EMPTY);
-											}
-											cp.drawImage(StaticVars.tmpColor);
-											if(!gmctr.checkForCleanUpBalls(cp.getCellNum())){
-												gmctr.addBallsByCount(3);
-											}
-											
-											StaticVars.path.clear();
-										}
-									}).start();
-									
-								}
-							}
-						}
-						
-
-					}
-
-				});
+				cp.addMouseListener(listener);
 			}
 		}
 
