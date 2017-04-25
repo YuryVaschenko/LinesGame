@@ -32,7 +32,8 @@ public class CellPanel extends JPanel {
 			cellBallColor = color;
 			status = 0;
 		}
-		updateUI();
+		revalidate();
+		repaint();
 
 	}
 

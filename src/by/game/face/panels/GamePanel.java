@@ -11,26 +11,41 @@ import javax.swing.JPanel;
 import by.game.backend.GameController;
 import by.game.backend.PathHandler;
 import by.game.face.BallColor;
-import by.game.face.PanelsCoords;
 import by.game.face.StaticVars;
 
 public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private MouseListener listener;
-	Thread movingBallThread;
 
 	public GamePanel() {
 
-		PanelsCoords coords = new PanelsCoords();
-		setBounds(coords.getCenterPanelDimention().width, coords.getCenterPanelDimention().height,
-				StaticVars.WIDTH_GAME_PANEL, StaticVars.HEIGHT_GAME_PANEL);
+		setBounds(15, 110, StaticVars.WIDTH_GAME_PANEL, StaticVars.HEIGHT_GAME_PANEL);
 		setLayout(null);
 		setBorder(BorderFactory.createSoftBevelBorder(0));
 		setVisible(true);
 
 		addCellsListener();
 		fillPanel();
+
+	}
+
+	private void fillPanel() {
+
+		int num = 0;
+
+		for (int i = 4; i < StaticVars.WIDTH_GAME_PANEL; i += 57) {
+			for (int j = 4; j < StaticVars.HEIGHT_GAME_PANEL; j += 57) {
+				CellPanel cp = new CellPanel();
+				cp.setBounds(j, i, 55, 55);
+				cp.setBorder(BorderFactory.createEtchedBorder());
+				cp.setCellNum(num);
+				StaticVars.listOfCellPanels.add(cp);
+				add(cp);
+				num++;
+				cp.addMouseListener(listener);
+			}
+		}
 
 	}
 
@@ -61,9 +76,24 @@ public class GamePanel extends JPanel {
 					} else {
 						if (!StaticVars.path.isEmpty() && cp.getStatus() == 0
 								&& pathHandler.isPathExists(cp.getCellNum())) {
-
+							// step back staff
+							StaticVars.stapBackFieldBallsColorList.clear();
+							for (CellPanel cell : StaticVars.listOfCellPanels) {
+								if (cell.getCellBallColor() == BallColor.ANGRY) {
+									StaticVars.stapBackFieldBallsColorList.add(StaticVars.tmpColor);
+								} else {
+									StaticVars.stapBackFieldBallsColorList.add(cell.getCellBallColor());
+								}
+							}
+							StaticVars.stapBackNewBallsColorList.clear();
+							for (int i = 0; i < 3; i++) {
+								StaticVars.stapBackNewBallsColorList
+										.add(StaticVars.listOfNewBallsPanels.get(i).getCellBallColor());
+							}
+							MainPanel.stepBackButton.setEnabled(true);
+							// -----
 							ballPath = pathHandler.findingShortesrWay(cp.getCellNum());
-							movingBallThread = new Thread(new Runnable() {
+							new Thread(new Runnable() {
 
 								@Override
 								public void run() {
@@ -71,7 +101,7 @@ public class GamePanel extends JPanel {
 									for (int i = ballPath.size() - 1; i > 0; i--) {
 										StaticVars.listOfCellPanels.get(ballPath.get(i)).drawImage(StaticVars.tmpColor);
 										try {
-											Thread.sleep(35);
+											Thread.sleep(40);
 										} catch (InterruptedException e) {
 											e.printStackTrace();
 										}
@@ -79,7 +109,7 @@ public class GamePanel extends JPanel {
 									}
 									cp.drawImage(StaticVars.tmpColor);
 									try {
-										Thread.sleep(100);
+										Thread.sleep(80);
 									} catch (InterruptedException e) {
 										e.printStackTrace();
 									}
@@ -88,8 +118,7 @@ public class GamePanel extends JPanel {
 									}
 
 								}
-							});
-							movingBallThread.start();
+							}).start();
 							StaticVars.path.clear();
 
 						}
@@ -99,25 +128,6 @@ public class GamePanel extends JPanel {
 			}
 
 		};
-
-	}
-
-	private void fillPanel() {
-
-		int num = 0;
-
-		for (int i = 4; i < StaticVars.WIDTH_GAME_PANEL; i += 57) {
-			for (int j = 4; j < StaticVars.HEIGHT_GAME_PANEL; j += 57) {
-				CellPanel cp = new CellPanel();
-				cp.setBounds(j, i, 55, 55);
-				cp.setBorder(BorderFactory.createEtchedBorder());
-				cp.setCellNum(num);
-				StaticVars.listOfCellPanels.add(cp);
-				add(cp);
-				num++;
-				cp.addMouseListener(listener);
-			}
-		}
 
 	}
 

@@ -1,44 +1,52 @@
 package by.game.face.panels;
 
-import java.awt.Dimension;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import by.game.face.PanelsCoords;
 import by.game.face.StaticVars;
 
 public class ScorePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private Dimension dim;
+
 	private static int textCount = 0;
-	private static JLabel text = new JLabel("<html><font size=8 color=green>" + textCount);
+	private static JLabel recordText;
+	private static JLabel scoreText;
+	
 	
 	public ScorePanel() {
-		
-		PanelsCoords coords = new PanelsCoords();
-		dim = coords.getScorePanelDimention();
 
-		setBounds(dim.width, dim.height, StaticVars.WIDTH_SCORE_PANELS, StaticVars.HEIGHT_SCORE_PANELS);
+		setLayout(null);
+		setBounds(15, 15, StaticVars.WIDTH_SCORE_PANEL, StaticVars.HEIGHT_SCORE_PANEL);
 		setBorder(BorderFactory.createEtchedBorder());
+		recordText = new JLabel("<html><font size=3 color=red>Record: "+ "\t" + StaticVars.RECORD_TEXT);
+		recordText.setBounds(15,-20, 170, 70);
+		scoreText = new JLabel("<html><font size=5 color=green>Score: " + textCount);
+		scoreText.setBounds(15, 5, 170, 70);
 		
-		add(text);
+		
+		add(recordText);
+		add(scoreText);
 		
 		setVisible(true);
+		
 		
 		
 	}
 	
 	public static void increaseCountByNum(int num){
-		text.setText("<html><font size=8 color=green>" + (textCount+=num));
+		scoreText.setText("<html><font size=5 color=green>Score: " + (textCount+=num));
+	}
+	
+	public static void decreaseCountByNum(int num){
+		scoreText.setText("<html><font size=5 color=green>Score: " + (textCount-=num));
 	}
 	
 	public static void setCount(int count){
 		textCount = count; 
-		text.setText("<html><font size=8 color=green>" + textCount);
+		scoreText.setText("<html><font size=5 color=green>Score: " + textCount);
 	}
 
 

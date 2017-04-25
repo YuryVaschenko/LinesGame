@@ -4,7 +4,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import by.game.face.BallColor;
-import by.game.face.PanelsCoords;
 import by.game.face.StaticVars;
 
 public class NewBallsPanel extends JPanel {
@@ -13,9 +12,7 @@ public class NewBallsPanel extends JPanel {
 
 	public NewBallsPanel() {
 
-		PanelsCoords coords = new PanelsCoords();
-		setBounds(coords.getNewRandoBallsPanelDimention().width, coords.getNewRandoBallsPanelDimention().height,
-				StaticVars.WIDTH_NEWBALLS_PANEL, StaticVars.HEIGHT_NEWBALLS_PANEL);
+		setBounds(185, 14, StaticVars.WIDTH_NEWBALLS_PANEL, StaticVars.HEIGHT_NEWBALLS_PANEL);
 		setLayout(null);
 		setBorder(BorderFactory.createSoftBevelBorder(0));
 		

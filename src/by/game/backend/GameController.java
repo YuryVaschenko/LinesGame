@@ -71,12 +71,15 @@ public class GameController {
 		listBallsForCleanUp.addAll(ctler.cleanUpDirectionLeftRight(cellNumber, color));
 
 		if (listBallsForCleanUp.size() > 4){
+			StaticVars.STEP_BACK_COUNT_TO_DECREASE = listBallsForCleanUp.size();
 			ScorePanel.increaseCountByNum(listBallsForCleanUp.size());
 			while (!listBallsForCleanUp.isEmpty()){
 				StaticVars.listOfCellPanels.get(listBallsForCleanUp.remove(0)).drawImage(BallColor.EMPTY);
 			}
 			success = true;
-		} 
+		} else {
+			StaticVars.STEP_BACK_COUNT_TO_DECREASE = 0;
+		}
 		
 		
 		return success;

@@ -20,10 +20,11 @@ public class BasicFrame extends JFrame {
 
 	public BasicFrame() {
 
-		super("Lines ver 1.0");
+		super("Lines ver 0.7");
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setBounds(385, 30, 550, 700);
+		setSize(550, 700);
 		Container container = getContentPane();
 		setVisible(true);
 
@@ -35,9 +36,9 @@ public class BasicFrame extends JFrame {
 
 	private void createMenu() {
 		JMenuBar menu = new JMenuBar();
-		JMenu basicMenu = new JMenu("File");
+		JMenu basicMenu = new JMenu("Menu");
 
-		for (String menuItem : new String[] { "New", "Exit" }) {
+		for (String menuItem : new String[] { "New game", "Exit" }) {
 			JMenuItem item = new JMenuItem(menuItem);
 			item.setActionCommand(menuItem.toLowerCase());
 			item.addActionListener(new ActionListener() {
@@ -47,7 +48,7 @@ public class BasicFrame extends JFrame {
 					if ("exit".equals(command)) {
 						System.exit(0);
 					}
-					if ("new".equals(command)) {
+					if ("new game".equals(command)) {
 
 						GameController mc = new GameController();
 						mc.refreshField();
