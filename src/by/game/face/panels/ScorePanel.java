@@ -10,8 +10,7 @@ public class ScorePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-
-	private static int textCount = 0;
+	private static int scoreValue = 0;
 	private static JLabel recordText;
 	private static JLabel scoreText;
 	
@@ -21,11 +20,10 @@ public class ScorePanel extends JPanel {
 		setLayout(null);
 		setBounds(15, 15, StaticVars.WIDTH_SCORE_PANEL, StaticVars.HEIGHT_SCORE_PANEL);
 		setBorder(BorderFactory.createEtchedBorder());
-		recordText = new JLabel("<html><font size=3 color=red>Record: "+ "\t" + StaticVars.RECORD_TEXT);
+		recordText = new JLabel("<html><font size=3 color=red>Record: " + StaticVars.listOfRecords.get(0).getScore());
 		recordText.setBounds(15,-20, 170, 70);
-		scoreText = new JLabel("<html><font size=5 color=green>Score: " + textCount);
+		scoreText = new JLabel("<html><font size=5 color=green>Score: " + scoreValue);
 		scoreText.setBounds(15, 5, 170, 70);
-		
 		
 		add(recordText);
 		add(scoreText);
@@ -36,19 +34,33 @@ public class ScorePanel extends JPanel {
 		
 	}
 	
-	public static void increaseCountByNum(int num){
-		scoreText.setText("<html><font size=5 color=green>Score: " + (textCount+=num));
+	public static void increaseScoreByNum(int num){
+		scoreText.setText("<html><font size=5 color=green>Score: " + (scoreValue+=num));
+		if(scoreValue > StaticVars.listOfRecords.get(0).getScore()){
+			setRecord(scoreValue);
+		}
+		
 	}
 	
-	public static void decreaseCountByNum(int num){
-		scoreText.setText("<html><font size=5 color=green>Score: " + (textCount-=num));
+	public static void decreaseScoreByNum(int num){
+		scoreText.setText("<html><font size=5 color=green>Score: " + (scoreValue-=num));
 	}
 	
-	public static void setCount(int count){
-		textCount = count; 
-		scoreText.setText("<html><font size=5 color=green>Score: " + textCount);
+	public static void resetScore(){ 
+		scoreText.setText("<html><font size=5 color=green>Score: " + 0);
 	}
 
+	public static void setRecord(int num){
+		recordText.setText("<html><font size=3 color=red>Record: " + num);
+	}
+	
+	public static int getScoreValue(){
+	 return scoreValue;
+	}
+		
+	public static void refreshRecord(){
+		recordText.setText("<html><font size=3 color=red>Record: " + StaticVars.listOfRecords.get(0).getScore());
+	}
 
 	
 	

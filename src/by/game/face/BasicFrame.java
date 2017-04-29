@@ -52,9 +52,10 @@ public class BasicFrame extends JFrame {
 
 						GameController mc = new GameController();
 						mc.refreshField();
-						ScorePanel.setCount(0);
+						ScorePanel.resetScore();
+						ScorePanel.refreshRecord();
 						mc.addBallsByCount(3);
-						StaticVars.STEP_BACK_COUNT = 5;
+						StaticVars.STEP_BACK_COUNT = 3;
 						MainPanel.stepBackButton.setText("< " + StaticVars.STEP_BACK_COUNT);
 						MainPanel.stepBackButton.setEnabled(true);
 

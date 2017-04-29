@@ -93,7 +93,7 @@ public class GamePanel extends JPanel {
 							if(StaticVars.STEP_BACK_COUNT > 0){
 								MainPanel.stepBackButton.setEnabled(true);
 							}
-							// -----
+							// --------
 							ballPath = pathHandler.findingShortesrWay(cp.getCellNum());
 							new Thread(new Runnable() {
 

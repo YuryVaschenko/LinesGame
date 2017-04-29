@@ -3,9 +3,9 @@ package by.game.backend.records;
 public class Record implements Comparable<Record> {
 
 	String name;
-	String score;
-	
-	public Record(String name, String score) {
+	int score;
+
+	public Record(String name, int score) {
 		this.name = name;
 		this.score = score;
 	}
@@ -14,7 +14,7 @@ public class Record implements Comparable<Record> {
 		return name;
 	}
 
-	public String getScore() {
+	public int getScore() {
 		return score;
 	}
 
@@ -23,7 +23,7 @@ public class Record implements Comparable<Record> {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((score == null) ? 0 : score.hashCode());
+		result = prime * result + score;
 		return result;
 	}
 
@@ -41,10 +41,7 @@ public class Record implements Comparable<Record> {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (score == null) {
-			if (other.score != null)
-				return false;
-		} else if (!score.equals(other.score))
+		if (score != other.score)
 			return false;
 		return true;
 	}
@@ -56,9 +53,7 @@ public class Record implements Comparable<Record> {
 
 	@Override
 	public int compareTo(Record o) {
-		return this.getScore().compareTo(o.getScore());
+		return this.getScore() - o.getScore();
 	}
-	
-	
-	
+
 }

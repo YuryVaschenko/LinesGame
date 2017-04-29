@@ -21,7 +21,7 @@ public class RecordsFileHandling implements RecordsIOHandlingInterface {
 	public List<Record> readRecords() {
 
 		List<Record> listOfRecords = new ArrayList<>();
-		Record dummyRecord = new Record("empty", "0");
+		int tmpScore = 0;
 		List<String> rawTmpList;
 		String[] recordMaterial;
 
@@ -29,15 +29,23 @@ public class RecordsFileHandling implements RecordsIOHandlingInterface {
 			rawTmpList = Files.readAllLines(new File(FILE_NAME).toPath(), StandardCharsets.UTF_8);
 			for (int i = 0; i < rawTmpList.size(); i++) {
 				recordMaterial = rawTmpList.get(i).split(DELIMITER);
-				listOfRecords.add(new Record(recordMaterial[0], recordMaterial[1]));
+				
+				try{
+					tmpScore = Integer.valueOf(recordMaterial[1]);
+				} catch (NumberFormatException e){
+					log.error(e);
+					System.exit(1);
+				}
+				
+				listOfRecords.add(new Record(recordMaterial[0], tmpScore));
 			}
 		} catch (IOException e) {
-			log.warn(e);
+			log.info(e);
 		}
 
 		if (listOfRecords.size() == 0) {
 			for (int i = 0; i < 10; i++) {
-				listOfRecords.add(dummyRecord);
+				listOfRecords.add(new Record("empty", 0));
 			}
 		}
 
@@ -53,7 +61,7 @@ public class RecordsFileHandling implements RecordsIOHandlingInterface {
 			try {
 				recordsFile.createNewFile();
 			} catch (IOException e) {
-				log.warn(e);
+				log.error(e);
 			}
 		}
 
