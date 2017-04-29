@@ -23,8 +23,8 @@ public class BasicFrame extends JFrame {
 		super("Lines ver 0.7");
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setBounds(385, 30, 550, 700);
-		setSize(550, 700);
+		setResizable(false);
+		setBounds(385, 30, 550, 690);
 		Container container = getContentPane();
 		setVisible(true);
 
@@ -54,6 +54,9 @@ public class BasicFrame extends JFrame {
 						mc.refreshField();
 						ScorePanel.setCount(0);
 						mc.addBallsByCount(3);
+						StaticVars.STEP_BACK_COUNT = 5;
+						MainPanel.stepBackButton.setText("< " + StaticVars.STEP_BACK_COUNT);
+						MainPanel.stepBackButton.setEnabled(true);
 
 					}
 				}

@@ -61,20 +61,20 @@ public class GamePanel extends JPanel {
 				CellPanel cp = (CellPanel) e.getComponent();
 				List<Integer> ballPath;
 
-				if (StaticVars.path.isEmpty() && cp.getStatus() != 0) {
-					StaticVars.path.add(cp.getCellNum());
+				if (StaticVars.selectBallLogicPath.isEmpty() && cp.getStatus() != 0) {
+					StaticVars.selectBallLogicPath.add(cp.getCellNum());
 					pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
 					StaticVars.tmpColor = cp.getCellBallColor();
 					cp.drawImage(BallColor.ANGRY);
 				} else {
-					if (!StaticVars.path.isEmpty() && cp.getStatus() != 0) {
-						StaticVars.listOfCellPanels.get(StaticVars.path.get(0)).drawImage(StaticVars.tmpColor);
-						StaticVars.path.set(0, cp.getCellNum());
+					if (!StaticVars.selectBallLogicPath.isEmpty() && cp.getStatus() != 0) {
+						StaticVars.listOfCellPanels.get(StaticVars.selectBallLogicPath.get(0)).drawImage(StaticVars.tmpColor);
+						StaticVars.selectBallLogicPath.set(0, cp.getCellNum());
 						pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
 						StaticVars.tmpColor = cp.getCellBallColor();
 						cp.drawImage(BallColor.ANGRY);
 					} else {
-						if (!StaticVars.path.isEmpty() && cp.getStatus() == 0
+						if (!StaticVars.selectBallLogicPath.isEmpty() && cp.getStatus() == 0
 								&& pathHandler.isPathExists(cp.getCellNum())) {
 							// step back staff
 							StaticVars.stapBackFieldBallsColorList.clear();
@@ -90,7 +90,9 @@ public class GamePanel extends JPanel {
 								StaticVars.stapBackNewBallsColorList
 										.add(StaticVars.listOfNewBallsPanels.get(i).getCellBallColor());
 							}
-							MainPanel.stepBackButton.setEnabled(true);
+							if(StaticVars.STEP_BACK_COUNT > 0){
+								MainPanel.stepBackButton.setEnabled(true);
+							}
 							// -----
 							ballPath = pathHandler.findingShortesrWay(cp.getCellNum());
 							new Thread(new Runnable() {
@@ -119,7 +121,7 @@ public class GamePanel extends JPanel {
 
 								}
 							}).start();
-							StaticVars.path.clear();
+							StaticVars.selectBallLogicPath.clear();
 
 						}
 					}

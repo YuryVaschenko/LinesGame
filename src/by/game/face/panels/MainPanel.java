@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import by.game.backend.GameController;
 import by.game.face.StaticVars;
 
 public class MainPanel extends JPanel {
@@ -24,24 +23,24 @@ public class MainPanel extends JPanel {
 		GamePanel gamePanel = new GamePanel();
 		NewBallsPanel nbp = new NewBallsPanel();
 
-		JButton addBallsButton = new JButton("+");
+		/*JButton addBallsButton = new JButton("+");
 		addBallsButton.setToolTipText("Add balls");
 		addBallsButton.setMargin(new Insets(-1, 1, 0, 0));
 		addBallsButton.setBounds(375, 17, 25, 25);
-		addBallsButtonListener(addBallsButton);
+		addBallsButtonListener(addBallsButton);*/
 		
-		stepBackButton = new JButton("<");
+		stepBackButton = new JButton();
 		stepBackButton.setEnabled(false);
 		stepBackButton.setToolTipText("Step back");
 		stepBackButton.setMargin(new Insets(-1, 1, 0, 0));
-		stepBackButton.setBounds(375, 48, 25, 25);
+		stepBackButton.setBounds(375, 48, 50, 25);
 		stepBackButtonListener(stepBackButton);
 
 
 		add(spanel);
 		add(gamePanel);
 		add(nbp);
-		add(addBallsButton);
+		//add(addBallsButton);
 		add(stepBackButton);
 
 	}
@@ -61,13 +60,15 @@ public class MainPanel extends JPanel {
 				}
 				ScorePanel.decreaseCountByNum(StaticVars.STEP_BACK_COUNT_TO_DECREASE);
 				stepBackButton.setEnabled(false);
-				
+				StaticVars.selectBallLogicPath.clear();
+				StaticVars.STEP_BACK_COUNT--;
+				stepBackButton.setText("< " + StaticVars.STEP_BACK_COUNT);
 			}
 		});
 		
 	}
 
-	private void addBallsButtonListener(JButton addBallsButton) {
+	/*private void addBallsButtonListener(JButton addBallsButton) {
 
 		addBallsButton.addActionListener(new ActionListener() {
 
@@ -80,6 +81,6 @@ public class MainPanel extends JPanel {
 			}
 		});
 
-	}
+	}*/
 
 }

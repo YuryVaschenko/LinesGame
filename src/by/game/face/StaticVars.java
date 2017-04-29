@@ -24,8 +24,9 @@ public final class StaticVars {
 	public static ArrayList<CellPanel> listOfCellPanels = new ArrayList<>();
 	public static ArrayList<CellPanel> listOfNewBallsPanels = new ArrayList<>();
 	public static ArrayList<Image> listOfImages = new ArrayList<>();
-	public static ArrayList<Integer> path = new ArrayList<>();
+	public static ArrayList<Integer> selectBallLogicPath = new ArrayList<>();
 	public static BallColor tmpColor;
+	public static int STEP_BACK_COUNT = 5;
 
 	
 
