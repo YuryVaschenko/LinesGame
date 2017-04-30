@@ -4,6 +4,8 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Icon;
+
 import by.game.backend.records.Record;
 import by.game.face.panels.CellPanel;
 
@@ -26,10 +28,11 @@ public final class StaticVars {
 	public static List<CellPanel> listOfCellPanels = new ArrayList<>();
 	public static List<CellPanel> listOfNewBallsPanels = new ArrayList<>();
 	public static List<Image> listOfImages = new ArrayList<>();
+	public static List<Icon> listOfBallsMotionIcons = new ArrayList<>();
 	public static List<Integer> selectBallLogicPath = new ArrayList<>();
 	public static List<Record> listOfRecords;
 	public static BallColor tmpColor;
-	public static int STEP_BACK_COUNT = 3;
+	public static int STEP_BACK_COUNT = 5;
 
 	
 

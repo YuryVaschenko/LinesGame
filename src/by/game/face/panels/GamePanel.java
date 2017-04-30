@@ -38,6 +38,7 @@ public class GamePanel extends JPanel {
 			for (int j = 4; j < StaticVars.HEIGHT_GAME_PANEL; j += 57) {
 				CellPanel cp = new CellPanel();
 				cp.setBounds(j, i, 55, 55);
+				cp.setLayout(null);
 				cp.setBorder(BorderFactory.createEtchedBorder());
 				cp.setCellNum(num);
 				StaticVars.listOfCellPanels.add(cp);
@@ -65,35 +66,33 @@ public class GamePanel extends JPanel {
 					StaticVars.selectBallLogicPath.add(cp.getCellNum());
 					pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
 					StaticVars.tmpColor = cp.getCellBallColor();
-					cp.drawImage(BallColor.ANGRY);
+					cp.startBallAnimation();
+
 				} else {
 					if (!StaticVars.selectBallLogicPath.isEmpty() && cp.getStatus() != 0) {
-						StaticVars.listOfCellPanels.get(StaticVars.selectBallLogicPath.get(0)).drawImage(StaticVars.tmpColor);
+						StaticVars.listOfCellPanels.get(StaticVars.selectBallLogicPath.get(0)).stopBallAnimation();
 						StaticVars.selectBallLogicPath.set(0, cp.getCellNum());
 						pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
 						StaticVars.tmpColor = cp.getCellBallColor();
-						cp.drawImage(BallColor.ANGRY);
+						cp.startBallAnimation();
 					} else {
 						if (!StaticVars.selectBallLogicPath.isEmpty() && cp.getStatus() == 0
 								&& pathHandler.isPathExists(cp.getCellNum())) {
 							// step back staff
 							StaticVars.stapBackFieldBallsColorList.clear();
 							for (CellPanel cell : StaticVars.listOfCellPanels) {
-								if (cell.getCellBallColor() == BallColor.ANGRY) {
-									StaticVars.stapBackFieldBallsColorList.add(StaticVars.tmpColor);
-								} else {
-									StaticVars.stapBackFieldBallsColorList.add(cell.getCellBallColor());
-								}
+								StaticVars.stapBackFieldBallsColorList.add(cell.getCellBallColor());
 							}
 							StaticVars.stapBackNewBallsColorList.clear();
 							for (int i = 0; i < 3; i++) {
 								StaticVars.stapBackNewBallsColorList
 										.add(StaticVars.listOfNewBallsPanels.get(i).getCellBallColor());
 							}
-							if(StaticVars.STEP_BACK_COUNT > 0){
+							if (StaticVars.STEP_BACK_COUNT > 0) {
 								MainPanel.stepBackButton.setEnabled(true);
 							}
 							// --------
+							StaticVars.listOfCellPanels.get(StaticVars.selectBallLogicPath.get(0)).stopBallAnimation();
 							ballPath = pathHandler.findingShortesrWay(cp.getCellNum());
 							new Thread(new Runnable() {
 

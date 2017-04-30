@@ -23,6 +23,12 @@ public class MainPanel extends JPanel {
 		GamePanel gamePanel = new GamePanel();
 		NewBallsPanel nbp = new NewBallsPanel();
 
+		/*JButton addBallsButton = new JButton("+");
+		 addBallsButton.setToolTipText("Add balls");
+		 addBallsButton.setMargin(new Insets(-1, 1, 0, 0));
+		 addBallsButton.setBounds(375, 17, 25, 25);
+		 addBallsButtonListener(addBallsButton);*/
+		
 		stepBackButton = new JButton();
 		stepBackButton.setEnabled(false);
 		stepBackButton.setToolTipText("Step back");
@@ -33,6 +39,7 @@ public class MainPanel extends JPanel {
 		add(spanel);
 		add(gamePanel);
 		add(nbp);
+		//add(addBallsButton);
 		add(stepBackButton);
 
 	}
@@ -45,7 +52,9 @@ public class MainPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				for (int i = 0; i < StaticVars.stapBackFieldBallsColorList.size(); i++) {
+					
 					StaticVars.listOfCellPanels.get(i).drawImage(StaticVars.stapBackFieldBallsColorList.get(i));
+					StaticVars.listOfCellPanels.get(i).stopBallAnimation();
 				}
 				for (int i = 0; i < StaticVars.stapBackNewBallsColorList.size(); i++) {
 					StaticVars.listOfNewBallsPanels.get(i).drawImage(StaticVars.stapBackNewBallsColorList.get(i));
@@ -59,5 +68,20 @@ public class MainPanel extends JPanel {
 		});
 
 	}
+	
+	/*private void addBallsButtonListener(JButton addBallsButton) {
+	  
+	 		addBallsButton.addActionListener(new ActionListener() {
+	 
+	 	@Override
+	 		public void actionPerformed(ActionEvent e) {
+	 
+	 				GameController gcon = new GameController();
+	 				gcon.addBallsByCount(3);
+	
+	 		}
+	 	});
+	 
+	 }*/
 
 }

@@ -4,12 +4,12 @@ public enum BallColor {
 
 	EMPTY,	//0
 	WHITE,	//1
-	BLUE,	//2
-	CYAN,	//3
-	GREEN,	//4
-	PURPLE,	//5
-	RED,	//6
-	YELLOW,	//7
+	BLUE,   //2
+	GREEN,  //3
+	RED,	//4
+	YELLOW,	//5
+	PURPLE,	//6
+	CYAN,	//7
 	ANGRY;	//8
 	
 	public static BallColor randomColor(){

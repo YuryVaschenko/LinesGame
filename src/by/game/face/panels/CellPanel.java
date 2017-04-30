@@ -3,6 +3,7 @@ package by.game.face.panels;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import by.game.face.BallColor;
@@ -16,9 +17,14 @@ public class CellPanel extends JPanel {
 	private int status = 0;
 	private int cellNum = 0;
 	private BallColor cellBallColor;
+	private JLabel motionLabel;
 
 	public CellPanel() {
 		drawImage(BallColor.EMPTY);
+		motionLabel = new JLabel();
+		motionLabel.setVisible(false);
+		motionLabel.setBounds(1, 1, 52, 52);
+		add(motionLabel);
 	}
 
 	public void drawImage(BallColor color) {
@@ -37,8 +43,42 @@ public class CellPanel extends JPanel {
 
 	}
 
+	public void startBallAnimation(){
+		
+		switch(cellBallColor){
+		case WHITE:
+			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(0));
+			break;
+		case BLUE:
+			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(1));
+			break;
+		case GREEN:
+			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(2));
+			break;
+		case RED:
+			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(3));
+			break;
+		case YELLOW:
+			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(4));
+			break;
+		case PURPLE:
+			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(5));
+			break;
+		case CYAN:
+			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(6));
+			break;
+		default:
+			break;
+		}
+		motionLabel.setVisible(true);
+	}
+	
+	public void stopBallAnimation(){
+		motionLabel.setIcon(null);
+		motionLabel.setVisible(false);
+	}
+	
 	public void refreshStatus() {
-
 		this.status = 0;
 	}
 
@@ -61,7 +101,6 @@ public class CellPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
 		g.drawImage(backgroundImage, 0, 0, this);
 	}
 

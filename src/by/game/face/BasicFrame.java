@@ -55,9 +55,9 @@ public class BasicFrame extends JFrame {
 						ScorePanel.resetScore();
 						ScorePanel.refreshRecord();
 						mc.addBallsByCount(3);
-						StaticVars.STEP_BACK_COUNT = 3;
+						StaticVars.STEP_BACK_COUNT = 5;
 						MainPanel.stepBackButton.setText("< " + StaticVars.STEP_BACK_COUNT);
-						MainPanel.stepBackButton.setEnabled(true);
+						MainPanel.stepBackButton.setEnabled(false);
 
 					}
 				}

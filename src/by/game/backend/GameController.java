@@ -16,6 +16,7 @@ public class GameController {
 
 	public void refreshField() {
 		for (CellPanel cp : StaticVars.listOfCellPanels) {
+			cp.stopBallAnimation();
 			cp.refreshStatus();
 			cp.drawImage(BallColor.EMPTY);
 		}
