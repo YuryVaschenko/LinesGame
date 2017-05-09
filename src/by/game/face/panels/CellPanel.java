@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import by.game.face.BallColor;
-import by.game.face.StaticVars;
+import by.game.face.Constants;
 
 public class CellPanel extends JPanel {
 
@@ -30,11 +30,11 @@ public class CellPanel extends JPanel {
 	public void drawImage(BallColor color) {
 
 		if (color.name() != BallColor.EMPTY.name()) {
-			backgroundImage = StaticVars.listOfImages.get(color.ordinal());
+			backgroundImage = Constants.listOfBallsImages.get(color.ordinal());
 			status++;
 			cellBallColor = color;
 		} else {
-			backgroundImage = StaticVars.listOfImages.get(0);
+			backgroundImage = Constants.listOfBallsImages.get(0);
 			cellBallColor = color;
 			status = 0;
 		}
@@ -47,25 +47,25 @@ public class CellPanel extends JPanel {
 		
 		switch(cellBallColor){
 		case WHITE:
-			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(0));
+			motionLabel.setIcon(Constants.listOfBallsChooseAnimationIcons.get(0));
 			break;
 		case BLUE:
-			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(1));
+			motionLabel.setIcon(Constants.listOfBallsChooseAnimationIcons.get(1));
 			break;
 		case GREEN:
-			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(2));
+			motionLabel.setIcon(Constants.listOfBallsChooseAnimationIcons.get(2));
 			break;
 		case RED:
-			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(3));
+			motionLabel.setIcon(Constants.listOfBallsChooseAnimationIcons.get(3));
 			break;
 		case YELLOW:
-			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(4));
+			motionLabel.setIcon(Constants.listOfBallsChooseAnimationIcons.get(4));
 			break;
 		case PURPLE:
-			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(5));
+			motionLabel.setIcon(Constants.listOfBallsChooseAnimationIcons.get(5));
 			break;
 		case CYAN:
-			motionLabel.setIcon(StaticVars.listOfBallsMotionIcons.get(6));
+			motionLabel.setIcon(Constants.listOfBallsChooseAnimationIcons.get(6));
 			break;
 		default:
 			break;

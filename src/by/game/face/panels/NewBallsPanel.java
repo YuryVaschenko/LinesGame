@@ -4,7 +4,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import by.game.face.BallColor;
-import by.game.face.StaticVars;
+import by.game.face.Constants;
 
 public class NewBallsPanel extends JPanel {
 
@@ -12,7 +12,7 @@ public class NewBallsPanel extends JPanel {
 
 	public NewBallsPanel() {
 
-		setBounds(185, 14, StaticVars.WIDTH_NEWBALLS_PANEL, StaticVars.HEIGHT_NEWBALLS_PANEL);
+		setBounds(185, 14, Constants.WIDTH_NEWBALLS_PANEL, Constants.HEIGHT_NEWBALLS_PANEL);
 		setLayout(null);
 		setBorder(BorderFactory.createSoftBevelBorder(0));
 		
@@ -24,13 +24,13 @@ public class NewBallsPanel extends JPanel {
 
 	private void fillPanel() {
 		
-		for (int i = 4; i < StaticVars.HEIGHT_NEWBALLS_PANEL; i += 57) {
-			for (int j = 4; j < StaticVars.WIDTH_NEWBALLS_PANEL; j += 57) {
+		for (int i = 4; i < Constants.HEIGHT_NEWBALLS_PANEL; i += 57) {
+			for (int j = 4; j < Constants.WIDTH_NEWBALLS_PANEL; j += 57) {
 				CellPanel cp = new CellPanel();
 				cp.setBounds(j, i, 55, 55);
 				cp.setBorder(BorderFactory.createEtchedBorder());
 				cp.drawImage(BallColor.randomColor());
-				StaticVars.listOfNewBallsPanels.add(cp);
+				Constants.listOfNewBallsPanels.add(cp);
 				add(cp);
 			}
 		}

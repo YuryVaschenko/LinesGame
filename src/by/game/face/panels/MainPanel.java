@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import by.game.face.StaticVars;
+import by.game.face.Constants;
 
 public class MainPanel extends JPanel {
 
@@ -22,6 +22,8 @@ public class MainPanel extends JPanel {
 		ScorePanel spanel = new ScorePanel();
 		GamePanel gamePanel = new GamePanel();
 		NewBallsPanel nbp = new NewBallsPanel();
+		RecordsPanel recordsPanel = new RecordsPanel();
+		recordsPanel.setVisible(false);
 
 		/*JButton addBallsButton = new JButton("+");
 		 addBallsButton.setToolTipText("Add balls");
@@ -36,9 +38,10 @@ public class MainPanel extends JPanel {
 		stepBackButton.setBounds(375, 48, 50, 25);
 		stepBackButtonListener(stepBackButton);
 
+		add(recordsPanel);
 		add(spanel);
 		add(gamePanel);
-		add(nbp);
+		add(nbp);		
 		//add(addBallsButton);
 		add(stepBackButton);
 
@@ -51,19 +54,19 @@ public class MainPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				for (int i = 0; i < StaticVars.stapBackFieldBallsColorList.size(); i++) {
+				for (int i = 0; i < Constants.stapBackFieldBallsColorList.size(); i++) {
 					
-					StaticVars.listOfCellPanels.get(i).drawImage(StaticVars.stapBackFieldBallsColorList.get(i));
-					StaticVars.listOfCellPanels.get(i).stopBallAnimation();
+					Constants.listOfCellPanels.get(i).drawImage(Constants.stapBackFieldBallsColorList.get(i));
+					Constants.listOfCellPanels.get(i).stopBallAnimation();
 				}
-				for (int i = 0; i < StaticVars.stapBackNewBallsColorList.size(); i++) {
-					StaticVars.listOfNewBallsPanels.get(i).drawImage(StaticVars.stapBackNewBallsColorList.get(i));
+				for (int i = 0; i < Constants.stapBackNewBallsColorList.size(); i++) {
+					Constants.listOfNewBallsPanels.get(i).drawImage(Constants.stapBackNewBallsColorList.get(i));
 				}
-				ScorePanel.decreaseScoreByNum(StaticVars.STEP_BACK_COUNT_TO_DECREASE);
+				ScorePanel.decreaseScoreByNum(Constants.STEP_BACK_COUNT_TO_DECREASE_SCORE);
 				stepBackButton.setEnabled(false);
-				StaticVars.selectBallLogicPath.clear();
-				StaticVars.STEP_BACK_COUNT--;
-				stepBackButton.setText("< " + StaticVars.STEP_BACK_COUNT);
+				Constants.selectBallLogicPath.clear();
+				Constants.STEP_BACK_COUNT--;
+				stepBackButton.setText("< " + Constants.STEP_BACK_COUNT);
 			}
 		});
 

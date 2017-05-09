@@ -21,17 +21,17 @@ public class MainClass {
 
 		try {
 			for (int i = 0; i < 9; i++) {
-				StaticVars.listOfImages.add(ImageIO.read(new File("resources/balls/back/" + i + ".png")));
+				Constants.listOfBallsImages.add(ImageIO.read(new File("resources/balls/back/" + i + ".png")));
 			}
 			for (int i = 1; i < 8; i++){
-				StaticVars.listOfBallsMotionIcons.add(new ImageIcon("resources/balls/motion/choosing_motion/" + i + "_motion.gif"));
+				Constants.listOfBallsChooseAnimationIcons.add(new ImageIcon("resources/balls/animation/animation_of_selection/" + i + "_motion.gif"));
 			}
 		} catch (IOException e) {
 			log.error(e);
 			System.exit(0);
 		}
 
-		StaticVars.listOfRecords = recordsHandling.readRecords();
+		Constants.listOfRecords = recordsHandling.readRecords();
 
 		BasicFrame bframe = new BasicFrame();
 		bframe.setVisible(true);

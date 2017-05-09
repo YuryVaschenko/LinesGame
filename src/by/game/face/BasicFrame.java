@@ -11,7 +11,9 @@ import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
 
 import by.game.backend.GameController;
+import by.game.face.panels.GamePanel;
 import by.game.face.panels.MainPanel;
+import by.game.face.panels.RecordsPanel;
 import by.game.face.panels.ScorePanel;
 
 public class BasicFrame extends JFrame {
@@ -38,34 +40,39 @@ public class BasicFrame extends JFrame {
 		JMenuBar menu = new JMenuBar();
 		JMenu basicMenu = new JMenu("Menu");
 
-		for (String menuItem : new String[] { "New game", "Exit" }) {
+		for (String menuItem : new String[] { "New game", "Records", "Exit" }) {
 			JMenuItem item = new JMenuItem(menuItem);
 			item.setActionCommand(menuItem.toLowerCase());
 			item.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					String command = e.getActionCommand();
-					if ("exit".equals(command)) {
-						System.exit(0);
-					}
 					if ("new game".equals(command)) {
-
 						GameController mc = new GameController();
 						mc.refreshField();
 						ScorePanel.resetScore();
 						ScorePanel.refreshRecord();
 						mc.addBallsByCount(3);
-						StaticVars.STEP_BACK_COUNT = 5;
-						MainPanel.stepBackButton.setText("< " + StaticVars.STEP_BACK_COUNT);
+						Constants.STEP_BACK_COUNT = 5;
+						MainPanel.stepBackButton.setText("< " + Constants.STEP_BACK_COUNT);
 						MainPanel.stepBackButton.setEnabled(false);
+						GamePanel.showPanel();
+						RecordsPanel.hidePanel();
 
+					}
+					if ("records".equals(command)) {
+						GamePanel.hidePanel();
+						RecordsPanel.showPanel();
+					}
+					if ("exit".equals(command)) {
+						System.exit(0);
 					}
 				}
 			});
 
 			basicMenu.add(item);
 		}
-		basicMenu.insertSeparator(1);
+		basicMenu.insertSeparator(2);
 		menu.add(basicMenu);
 		setJMenuBar(menu);
 	}

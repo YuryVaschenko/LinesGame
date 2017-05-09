@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.game.face.BallColor;
-import by.game.face.StaticVars;
+import by.game.face.Constants;
 import by.game.face.panels.CellPanel;
 
 public class Controller {
@@ -15,7 +15,7 @@ public class Controller {
 	public void drawBallInCell(int x, int y, BallColor color) {
 
 		int cellNum = Point.getCellNumber(x, y);
-		CellPanel cell = StaticVars.listOfCellPanels.get(cellNum);
+		CellPanel cell = Constants.listOfCellPanels.get(cellNum);
 		cell.drawImage(color);
 
 	}
@@ -26,7 +26,7 @@ public class Controller {
 		Point point = Point.getPointCoordsByNum(cellNumber);
 
 		while (point.getX() - 1 > 0 && point.getY() - 1 > 0) {
-			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() - 1, point.getY() - 1))
+			if (Constants.listOfCellPanels.get(Point.getCellNumber(point.getX() - 1, point.getY() - 1))
 					.getCellBallColor().name() == color.name()) {
 				listOfBalls.add(Point.getCellNumber(point.getX() - 1, point.getY() - 1));
 				point.setX(point.getX() - 1);
@@ -39,7 +39,7 @@ public class Controller {
 		point = Point.getPointCoordsByNum(cellNumber);
 
 		while (point.getX() + 1 < 10 && point.getY() + 1 < 10) {
-			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() + 1, point.getY() + 1))
+			if (Constants.listOfCellPanels.get(Point.getCellNumber(point.getX() + 1, point.getY() + 1))
 					.getCellBallColor().name() == color.name()) {
 				listOfBalls.add(Point.getCellNumber(point.getX() + 1, point.getY() + 1));
 				point.setX(point.getX() + 1);
@@ -63,7 +63,7 @@ public class Controller {
 		Point point = Point.getPointCoordsByNum(cellNumber);
 
 		while (point.getX() + 1 < 10 && point.getY() - 1 > 0) {
-			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() + 1, point.getY() - 1))
+			if (Constants.listOfCellPanels.get(Point.getCellNumber(point.getX() + 1, point.getY() - 1))
 					.getCellBallColor().name() == color.name()) {
 				listOfBalls.add(Point.getCellNumber(point.getX() + 1, point.getY() - 1));
 				point.setX(point.getX() + 1);
@@ -76,7 +76,7 @@ public class Controller {
 		point = Point.getPointCoordsByNum(cellNumber);
 
 		while (point.getX() - 1 > 0 && point.getY() + 1 < 10) {
-			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() - 1, point.getY() + 1))
+			if (Constants.listOfCellPanels.get(Point.getCellNumber(point.getX() - 1, point.getY() + 1))
 					.getCellBallColor().name() == color.name()) {
 				listOfBalls.add(Point.getCellNumber(point.getX() - 1, point.getY() + 1));
 				point.setX(point.getX() - 1);
@@ -99,7 +99,7 @@ public class Controller {
 		Point point = Point.getPointCoordsByNum(cellNumber);
 
 		while (point.getY() - 1 > 0) {
-			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX(), point.getY() - 1)).getCellBallColor()
+			if (Constants.listOfCellPanels.get(Point.getCellNumber(point.getX(), point.getY() - 1)).getCellBallColor()
 					.name() == color.name()) {
 				listOfBalls.add(Point.getCellNumber(point.getX(), point.getY() - 1));
 				point.setY(point.getY() - 1);
@@ -111,7 +111,7 @@ public class Controller {
 		point = Point.getPointCoordsByNum(cellNumber);
 
 		while (point.getY() + 1 < 10) {
-			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX(), point.getY() + 1)).getCellBallColor()
+			if (Constants.listOfCellPanels.get(Point.getCellNumber(point.getX(), point.getY() + 1)).getCellBallColor()
 					.name() == color.name()) {
 				listOfBalls.add(Point.getCellNumber(point.getX(), point.getY() + 1));
 				point.setY(point.getY() + 1);
@@ -134,7 +134,7 @@ public class Controller {
 		Point point = Point.getPointCoordsByNum(cellNumber);
 
 		while (point.getX() - 1 > 0) {
-			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() - 1, point.getY())).getCellBallColor()
+			if (Constants.listOfCellPanels.get(Point.getCellNumber(point.getX() - 1, point.getY())).getCellBallColor()
 					.name() == color.name()) {
 				listOfBalls.add(Point.getCellNumber(point.getX() - 1, point.getY()));
 				point.setX(point.getX() - 1);
@@ -146,7 +146,7 @@ public class Controller {
 		point = Point.getPointCoordsByNum(cellNumber);
 
 		while (point.getX() + 1 < 10) {
-			if (StaticVars.listOfCellPanels.get(Point.getCellNumber(point.getX() + 1, point.getY())).getCellBallColor()
+			if (Constants.listOfCellPanels.get(Point.getCellNumber(point.getX() + 1, point.getY())).getCellBallColor()
 					.name() == color.name()) {
 				listOfBalls.add(Point.getCellNumber(point.getX() + 1, point.getY()));
 				point.setX(point.getX() + 1);

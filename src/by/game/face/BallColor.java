@@ -16,7 +16,7 @@ public enum BallColor {
 		
 		BallColor [] bc = BallColor.values();
 		
-		return bc[(int)( (Math.random() * StaticVars.NUMBER_OF_COLORS) + 1)];
+		return bc[(int)( (Math.random() * Constants.NUMBER_OF_COLORS) + 1)];
 	}
 	
 	public static BallColor getColorByNum(int num){
