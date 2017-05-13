@@ -60,6 +60,7 @@ public class RecordsFileHandling implements RecordsIOHandlingInterface {
 		if (!recordsFile.exists()) {
 			try {
 				recordsFile.createNewFile();
+				log.info("File of highscores created.");
 			} catch (IOException e) {
 				log.error(e);
 			}

@@ -1,4 +1,0 @@
-2017-04-29 23:45:04 INFO  by.game.backend.records.RecordsFileHandling.readRecords 43 - java.nio.file.NoSuchFileException: resources/records.sco
-2017-04-29 23:53:05 INFO  by.game.backend.records.RecordsFileHandling.readRecords 43 - java.nio.file.NoSuchFileException: resources/records.sco
-2017-04-30 04:00:01 ERROR by.game.face.MainClass.main 29 - javax.imageio.IIOException: Can't read input file!
-2017-04-30 04:56:53 ERROR by.game.face.MainClass.main 29 - javax.imageio.IIOException: Can't read input file!

@@ -22,15 +22,18 @@ public class MainPanel extends JPanel {
 		ScorePanel spanel = new ScorePanel();
 		GamePanel gamePanel = new GamePanel();
 		NewBallsPanel nbp = new NewBallsPanel();
-		RecordsPanel recordsPanel = new RecordsPanel();
-		recordsPanel.setVisible(false);
+		HighscoresPanel recordsPanel = new HighscoresPanel();
+		// recordsPanel.setVisible(false);
+		gamePanel.setVisible(false);
 
-		/*JButton addBallsButton = new JButton("+");
-		 addBallsButton.setToolTipText("Add balls");
-		 addBallsButton.setMargin(new Insets(-1, 1, 0, 0));
-		 addBallsButton.setBounds(375, 17, 25, 25);
-		 addBallsButtonListener(addBallsButton);*/
-		
+		/*
+		 * JButton addBallsButton = new JButton("+");
+		 * addBallsButton.setToolTipText("Add balls");
+		 * addBallsButton.setMargin(new Insets(-1, 1, 0, 0));
+		 * addBallsButton.setBounds(375, 17, 25, 25);
+		 * addBallsButtonListener(addBallsButton);
+		 */
+
 		stepBackButton = new JButton();
 		stepBackButton.setEnabled(false);
 		stepBackButton.setToolTipText("Step back");
@@ -41,10 +44,14 @@ public class MainPanel extends JPanel {
 		add(recordsPanel);
 		add(spanel);
 		add(gamePanel);
-		add(nbp);		
-		//add(addBallsButton);
+		add(nbp);
+		// add(addBallsButton);
 		add(stepBackButton);
 
+	}
+
+	public static void increaseStepBackCount() {
+		stepBackButton.setText("< " + (++Constants.STEP_BACK_COUNT));
 	}
 
 	private void stepBackButtonListener(JButton stepBackButton) {
@@ -55,7 +62,7 @@ public class MainPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				for (int i = 0; i < Constants.stapBackFieldBallsColorList.size(); i++) {
-					
+
 					Constants.listOfCellPanels.get(i).drawImage(Constants.stapBackFieldBallsColorList.get(i));
 					Constants.listOfCellPanels.get(i).stopBallAnimation();
 				}
@@ -64,27 +71,26 @@ public class MainPanel extends JPanel {
 				}
 				ScorePanel.decreaseScoreByNum(Constants.STEP_BACK_COUNT_TO_DECREASE_SCORE);
 				stepBackButton.setEnabled(false);
-				Constants.selectBallLogicPath.clear();
+				Constants.selectionBallHandling.clear();
 				Constants.STEP_BACK_COUNT--;
 				stepBackButton.setText("< " + Constants.STEP_BACK_COUNT);
 			}
 		});
 
 	}
-	
-	/*private void addBallsButtonListener(JButton addBallsButton) {
-	  
-	 		addBallsButton.addActionListener(new ActionListener() {
-	 
-	 	@Override
-	 		public void actionPerformed(ActionEvent e) {
-	 
-	 				GameController gcon = new GameController();
-	 				gcon.addBallsByCount(3);
-	
-	 		}
-	 	});
-	 
-	 }*/
+
+	/*
+	 * private void addBallsButtonListener(JButton addBallsButton) {
+	 * 
+	 * addBallsButton.addActionListener(new ActionListener() {
+	 * 
+	 * @Override public void actionPerformed(ActionEvent e) {
+	 * 
+	 * GameController gcon = new GameController(); gcon.addBallsByCount(3);
+	 * 
+	 * } });
+	 * 
+	 * }
+	 */
 
 }

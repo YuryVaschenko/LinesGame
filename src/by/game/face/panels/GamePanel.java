@@ -18,6 +18,7 @@ public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private MouseListener listener;
 	private static GamePanel gamePanel;
+	private BallColor tmpColor;
 
 	public GamePanel() {
 
@@ -31,18 +32,19 @@ public class GamePanel extends JPanel {
 		fillPanel();
 
 	}
-	
-	public static void hidePanel(){
-		if(gamePanel != null){
+
+	public static void hidePanel() {
+		if (gamePanel != null) {
 			gamePanel.setVisible(false);
 		}
 	}
 
-	public static void showPanel(){
-		if(gamePanel != null){
+	public static void showPanel() {
+		if (gamePanel != null) {
 			gamePanel.setVisible(true);
 		}
 	}
+
 	private void fillPanel() {
 
 		int num = 0;
@@ -75,21 +77,21 @@ public class GamePanel extends JPanel {
 				CellPanel cp = (CellPanel) e.getComponent();
 				List<Integer> ballPath;
 
-				if (Constants.selectBallLogicPath.isEmpty() && cp.getStatus() != 0) {
-					Constants.selectBallLogicPath.add(cp.getCellNum());
+				if (Constants.selectionBallHandling.isEmpty() && cp.getStatus() != 0) {
+					Constants.selectionBallHandling.add(cp.getCellNum());
 					pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
-					Constants.tmpColor = cp.getCellBallColor();
+					tmpColor = cp.getCellBallColor();
 					cp.startBallAnimation();
 
 				} else {
-					if (!Constants.selectBallLogicPath.isEmpty() && cp.getStatus() != 0) {
-						Constants.listOfCellPanels.get(Constants.selectBallLogicPath.get(0)).stopBallAnimation();
-						Constants.selectBallLogicPath.set(0, cp.getCellNum());
+					if (!Constants.selectionBallHandling.isEmpty() && cp.getStatus() != 0) {
+						Constants.listOfCellPanels.get(Constants.selectionBallHandling.get(0)).stopBallAnimation();
+						Constants.selectionBallHandling.set(0, cp.getCellNum());
 						pathHandler.fillingFieldToGetShortestPath(cp.getCellNum());
-						Constants.tmpColor = cp.getCellBallColor();
+						tmpColor = cp.getCellBallColor();
 						cp.startBallAnimation();
 					} else {
-						if (!Constants.selectBallLogicPath.isEmpty() && cp.getStatus() == 0
+						if (!Constants.selectionBallHandling.isEmpty() && cp.getStatus() == 0
 								&& pathHandler.isPathExists(cp.getCellNum())) {
 							// step back staff
 							Constants.stapBackFieldBallsColorList.clear();
@@ -105,12 +107,12 @@ public class GamePanel extends JPanel {
 								MainPanel.stepBackButton.setEnabled(true);
 							}
 							// --------
-							Constants.listOfCellPanels.get(Constants.selectBallLogicPath.get(0)).stopBallAnimation();
+							Constants.listOfCellPanels.get(Constants.selectionBallHandling.get(0)).stopBallAnimation();
 							ballPath = pathHandler.findingShortesrWay(cp.getCellNum());
-							
+
 							new Thread(() -> {
 								for (int i = ballPath.size() - 1; i > 0; i--) {
-									Constants.listOfCellPanels.get(ballPath.get(i)).drawImage(Constants.tmpColor);
+									Constants.listOfCellPanels.get(ballPath.get(i)).drawImage(tmpColor);
 									try {
 										Thread.sleep(40);
 									} catch (InterruptedException ex) {
@@ -118,7 +120,7 @@ public class GamePanel extends JPanel {
 									}
 									Constants.listOfCellPanels.get(ballPath.get(i)).drawImage(BallColor.EMPTY);
 								}
-								cp.drawImage(Constants.tmpColor);
+								cp.drawImage(tmpColor);
 								try {
 									Thread.sleep(80);
 								} catch (InterruptedException ex) {
@@ -128,8 +130,8 @@ public class GamePanel extends JPanel {
 									gmctr.addBallsByCount(3);
 								}
 							}).start();
-							
-							Constants.selectBallLogicPath.clear();
+
+							Constants.selectionBallHandling.clear();
 
 						}
 					}

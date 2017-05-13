@@ -48,6 +48,7 @@ public class ScorePanel extends JPanel {
 	
 	public static void resetScore(){ 
 		scoreText.setText("<html><font size=5 color=green>Score: " + 0);
+		scoreValue = 0;
 	}
 
 	public static void setRecord(int num){

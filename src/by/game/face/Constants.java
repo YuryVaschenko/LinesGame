@@ -29,11 +29,9 @@ public final class Constants {
 	public static List<CellPanel> listOfNewBallsPanels = new ArrayList<>();
 	public static List<Image> listOfBallsImages = new ArrayList<>();
 	public static List<Icon> listOfBallsChooseAnimationIcons = new ArrayList<>();
-	public static List<Integer> selectBallLogicPath = new ArrayList<>();
+	public static List<Integer> selectionBallHandling = new ArrayList<>();
 	public static List<Record> listOfRecords;
 	public static List<JLabel> listOfRecordsTableLabels = new ArrayList<>();
-	
-	public static BallColor tmpColor;
 	public static int STEP_BACK_COUNT = 5;
 
 	

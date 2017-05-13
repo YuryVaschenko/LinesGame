@@ -13,7 +13,7 @@ import javax.swing.WindowConstants;
 import by.game.backend.GameController;
 import by.game.face.panels.GamePanel;
 import by.game.face.panels.MainPanel;
-import by.game.face.panels.RecordsPanel;
+import by.game.face.panels.HighscoresPanel;
 import by.game.face.panels.ScorePanel;
 
 public class BasicFrame extends JFrame {
@@ -57,12 +57,12 @@ public class BasicFrame extends JFrame {
 						MainPanel.stepBackButton.setText("< " + Constants.STEP_BACK_COUNT);
 						MainPanel.stepBackButton.setEnabled(false);
 						GamePanel.showPanel();
-						RecordsPanel.hidePanel();
+						HighscoresPanel.hidePanel();
 
 					}
 					if ("records".equals(command)) {
 						GamePanel.hidePanel();
-						RecordsPanel.showPanel();
+						HighscoresPanel.showPanel();
 					}
 					if ("exit".equals(command)) {
 						System.exit(0);

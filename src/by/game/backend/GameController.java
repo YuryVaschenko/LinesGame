@@ -85,7 +85,11 @@ public class GameController {
 		listBallsForCleanUp.addAll(ctler.cleanUpDirectionUpDown(cellNumber, color));
 		listBallsForCleanUp.addAll(ctler.cleanUpDirectionLeftRight(cellNumber, color));
 
-		if (listBallsForCleanUp.size() > 4) {
+		if (listBallsForCleanUp.size() >= 6) {
+			MainPanel.increaseStepBackCount();
+			MainPanel.stepBackButton.setEnabled(true);
+		}
+		if (listBallsForCleanUp.size() >= 5) {
 			Constants.STEP_BACK_COUNT_TO_DECREASE_SCORE = listBallsForCleanUp.size();
 			ScorePanel.increaseScoreByNum(listBallsForCleanUp.size());
 			while (!listBallsForCleanUp.isEmpty()) {
