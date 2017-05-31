@@ -61,13 +61,13 @@ public class MainPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				for (int i = 0; i < Constants.stapBackFieldBallsColorList.size(); i++) {
+				for (int i = 0; i < Constants.stepBackFieldBallsColorList.size(); i++) {
 
-					Constants.listOfCellPanels.get(i).drawImage(Constants.stapBackFieldBallsColorList.get(i));
+					Constants.listOfCellPanels.get(i).drawImage(Constants.stepBackFieldBallsColorList.get(i));
 					Constants.listOfCellPanels.get(i).stopBallAnimation();
 				}
-				for (int i = 0; i < Constants.stapBackNewBallsColorList.size(); i++) {
-					Constants.listOfNewBallsPanels.get(i).drawImage(Constants.stapBackNewBallsColorList.get(i));
+				for (int i = 0; i < Constants.stepBackNewBallsColorList.size(); i++) {
+					Constants.listOfNewBallsPanels.get(i).drawImage(Constants.stepBackNewBallsColorList.get(i));
 				}
 				ScorePanel.decreaseScoreByNum(Constants.STEP_BACK_COUNT_TO_DECREASE_SCORE);
 				stepBackButton.setEnabled(false);

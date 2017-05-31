@@ -23,8 +23,8 @@ public final class Constants {
 	public static int NUMBER_OF_COLORS = 7; // 1 to 7
 	public static int STEP_BACK_COUNT_TO_DECREASE_SCORE = 0;
 	public static int[][] fieldArrayToPathHandling = new int[GRID_ROWS_COUNT + 2][GRID_COLS_COUNT + 2];
-	public static List<BallColor> stapBackFieldBallsColorList = new ArrayList<>();
-	public static List<BallColor> stapBackNewBallsColorList = new ArrayList<>();
+	public static List<BallColor> stepBackFieldBallsColorList = new ArrayList<>();
+	public static List<BallColor> stepBackNewBallsColorList = new ArrayList<>();
 	public static List<CellPanel> listOfCellPanels = new ArrayList<>();
 	public static List<CellPanel> listOfNewBallsPanels = new ArrayList<>();
 	public static List<Image> listOfBallsImages = new ArrayList<>();
@@ -33,7 +33,5 @@ public final class Constants {
 	public static List<Record> listOfRecords;
 	public static List<JLabel> listOfRecordsTableLabels = new ArrayList<>();
 	public static int STEP_BACK_COUNT = 5;
-
-	
 
 }
