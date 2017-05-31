@@ -13,29 +13,29 @@ import by.game.backend.records.RecordsIOHandlingInterface;
 
 public class MainClass {
 
-	private static final Logger log = Logger.getLogger(MainClass.class);
+    private static final Logger log = Logger.getLogger(MainClass.class);
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		RecordsIOHandlingInterface recordsHandling = new RecordsFileHandling();
+        RecordsIOHandlingInterface recordsHandling = new RecordsFileHandling();
 
-		try {
-			for (int i = 0; i < 9; i++) {
-				Constants.listOfBallsImages.add(ImageIO.read(new File("resources/balls/back/" + i + ".png")));
-			}
-			for (int i = 1; i < 8; i++){
-				Constants.listOfBallsChooseAnimationIcons.add(new ImageIcon("resources/balls/animation/animation_of_selection/" + i + "_motion.gif"));
-			}
-		} catch (IOException e) {
-			log.error(e);
-			System.exit(0);
-		}
+        try {
+            for (int i = 0; i < 9; i++) {
+                Constants.listOfBallsImages.add(ImageIO.read(new File("src/main/resources/balls/back/" + i + ".png")));
+            }
+            for (int i = 1; i < 8; i++) {
+                Constants.listOfBallsChooseAnimationIcons.add(new ImageIcon("src/main/resources/balls/animation/animation_of_selection/" + i + "_motion.gif"));
+            }
+        } catch (IOException e) {
+            log.error(e);
+            System.exit(0);
+        }
 
-		Constants.listOfRecords = recordsHandling.readRecords();
+        Constants.listOfRecords = recordsHandling.readRecords();
 
-		BasicFrame bframe = new BasicFrame();
-		bframe.setVisible(true);
+        BasicFrame bframe = new BasicFrame();
+        bframe.setVisible(true);
 
-	}
+    }
 
 }

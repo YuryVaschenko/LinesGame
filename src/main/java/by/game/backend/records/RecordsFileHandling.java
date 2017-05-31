@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 public class RecordsFileHandling implements RecordsIOHandlingInterface {
 
 	private static final Logger log = Logger.getLogger(RecordsFileHandling.class);
-	private static final String FILE_NAME = "resources/records.sco";
+	private static final String FILE_NAME = "src/main/resources/records.sco";
 	private static final String DELIMITER = "_;_";
 
 	@Override
