@@ -1,15 +1,12 @@
 package by.game.face;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-
-import org.apache.log4j.Logger;
-
 import by.game.backend.records.RecordsFileHandling;
 import by.game.backend.records.RecordsIOHandlingInterface;
+import org.apache.log4j.Logger;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.io.IOException;
 
 public class MainClass {
 
@@ -21,13 +18,14 @@ public class MainClass {
 
         try {
             for (int i = 0; i < 9; i++) {
-                Constants.listOfBallsImages.add(ImageIO.read(new File("src/main/resources/balls/back/" + i + ".png")));
+                Constants.listOfBallsImages.add(ImageIO.read(MainClass.class.getResource("/balls/back/" + i + ".png")));
             }
             for (int i = 1; i < 8; i++) {
-                Constants.listOfBallsChooseAnimationIcons.add(new ImageIcon("src/main/resources/balls/animation/animation_of_selection/" + i + "_motion.gif"));
+                Constants.listOfBallsChooseAnimationIcons.add(new ImageIcon(MainClass.class.getResource("/balls/animation/animation_of_selection/" + i + "_motion.gif")));
             }
         } catch (IOException e) {
             log.error(e);
+            System.out.println(e.getMessage());
             System.exit(0);
         }
 

@@ -1,3 +1,15 @@
 2017-06-01 02:13:57 INFO  by.game.backend.records.RecordsFileHandling.readRecords 43 - java.nio.file.NoSuchFileException: records.sco
 2017-06-01 02:14:48 INFO  by.game.backend.records.RecordsFileHandling.readRecords 43 - java.nio.file.NoSuchFileException: src/main/recources/records.sco
 2017-06-01 02:17:48 ERROR by.game.face.MainClass.main 30 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 11:32:57 ERROR by.game.face.MainClass.main 30 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 11:33:32 ERROR by.game.face.MainClass.main 30 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 11:35:10 ERROR by.game.face.MainClass.main 30 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 11:38:23 ERROR by.game.face.MainClass.main 30 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 11:42:53 ERROR by.game.face.MainClass.main 30 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 11:57:16 ERROR by.game.face.MainClass.main 31 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 11:57:29 ERROR by.game.face.MainClass.main 31 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 11:58:08 ERROR by.game.face.MainClass.main 31 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 11:58:27 ERROR by.game.face.MainClass.main 31 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 12:00:36 ERROR by.game.face.MainClass.main 31 - javax.imageio.IIOException: Can't read input file!
+2017-10-12 13:07:36 INFO  by.game.backend.records.RecordsFileHandling.readRecords 43 - java.nio.file.NoSuchFileException: .\resources\records.sco
+2017-10-12 13:32:18 INFO  by.game.backend.records.RecordsFileHandling.readRecords 43 - java.nio.file.NoSuchFileException: .\resources\records.sco
